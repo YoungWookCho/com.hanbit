@@ -29,6 +29,7 @@ public class ForExercise {
 		int iSum=0;
 		
 		for ( iCount=from; iCount<=to; iCount++){
+			
 			if ( iCount%2 == 0 ){
 					iSum+=iCount;
 				}
