@@ -8,7 +8,7 @@ public class StudyFuctions {
 
 		// 2. 변수로 받은 월에 따라 영문 월명을 출력하세요.
 		//   ex: month = 1 -> January
-		//   ex: month = 2 -> Febrary
+		//   ex: month = 2 -> Febrarysdf
 		int month = 12;
 		printMonthName(month);
 		PrintMonthNameArr(month);
@@ -23,7 +23,7 @@ public class StudyFuctions {
 		 	System.out.println(arrStrMonth[month-1]);
 		 }
 		 else{
-			 System.out.println("잘못된 월 입니다.");
+			 System.out.println("a잘못된 월 입니다.");
 		 }
 		 
 		
