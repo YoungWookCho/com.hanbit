@@ -11,7 +11,7 @@ public class ForExercise {
 		// 2. 두개의 정수를 입력받아
 		//    첫번째 수 부터 두번째 수까지의 합을
 		//    구하는 함수를 작성하세요.
-		int from = 10, to = 30;
+		int from = 1, to = 10;
 		System.out.println(getSum(from, to));
 		
 		
@@ -30,8 +30,6 @@ public class ForExercise {
 		
 		
 		return iSum;
-		
-	
 	}
 
 	static int getSumOneToTen() {
