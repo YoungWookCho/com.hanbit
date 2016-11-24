@@ -26,10 +26,7 @@ package com.hanbit;
 			//    6자 이상이면 "Long" 문자열을 넣어서 배열을 반환하세요.
 			shortMonthNames = getShortMonthNamesOrLong(monthNames);
 			printArray(shortMonthNames);
-			
-		
-			
-			
+
 		}
 		
 		
@@ -41,25 +38,20 @@ package com.hanbit;
 			// TODO Auto-generated method stub
 			 String[] arrResult= new String[12];
 			
-			 for (int iCount=0; iCount<monthNames.length; iCount++){
+			 for (int iCount=0; iCount < monthNames.length; iCount++){
 				 
-				 if ( monthNames[iCount].length()>5){
+				 if ( monthNames[iCount].length() > 5 ){
 					 arrResult[iCount]="Long";
 					 
 				 }
 				 else {
-					 arrResult[iCount]=monthNames[iCount];
+					 arrResult[iCount] = monthNames[iCount];
 					 
 				 }
-				 
-				 
+	 
 			 }
-			 
-			 
-			 
+
 			 return arrResult;
-			 
-			 
 
 		}
 
@@ -70,11 +62,7 @@ package com.hanbit;
 
 		static String[] getShortMonthNames(String[] monthNames) {
 			// TODO Auto-generated method stub
-			 
-			 			 
-			 
-			 
-			 
+
 			 int iCount=0;
 			 
 			 for (int j=0; j<12; j++){
@@ -94,8 +82,7 @@ package com.hanbit;
 					 iCount++;
 				 }
 			 }
-			 
-			 
+
 			return monthNamesUnder5;
 		}
 
