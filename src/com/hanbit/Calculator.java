@@ -31,7 +31,6 @@ public class Calculator {
 	static int calculateMore(int x, int y, String[] operator) {
 		
 		
-		
 		int result1 = caculate(x,y,operator[0]);
 		int result2 = caculate(x,y,operator[2]);
 		
