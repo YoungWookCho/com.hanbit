@@ -35,6 +35,8 @@ public class Calculator {
 		int result2 = caculate(x,y,operator[2]);
 		
 		return caculate(result1,result2,operator[1]);
+		//return calculateMore(x,y,operator[0],operator[1],operator[2]);
+		
 	}
 	
 	
