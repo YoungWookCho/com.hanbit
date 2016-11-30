@@ -9,6 +9,13 @@ public class StringUtils00 {
 
 	}
 	
+	
+	
+	
+	
+	
+	
+	
 	static char switchCase(char ch){
 		
 		int result=0;
