@@ -19,7 +19,7 @@ public class StringUtils {
 		System.out.println("isAlaphaOrDigit: "+isAlaphaOrDigit("hello123/"));
 		System.out.println(removeChar(null,'e'));
 		*/
-		System.out.println(removeStr("banananananaa","na"));
+		System.out.println(removeStr("java","av"));
 		
 		
 	}
@@ -61,7 +61,7 @@ public class StringUtils {
 			boolean match = false;
 			
 			if (strChars[i]==rmStrChars[0]) {
-				for (int j=0; j<rmStrCharsLen; j++){
+				for (int j=1; j<rmStrCharsLen; j++){
 					if (j+i<strCharsLen && strChars[j+i]==rmStrChars[j]){
 						match=true;						
 					}
