@@ -11,6 +11,12 @@ public class StringUtils01 {
 		
 		System.out.println(trim("   st r   "));
 	}
+	
+	
+	
+	
+	
+	
 
 	static String rightPad(String str, int size, char ch){
 		int stringLen = 0;
@@ -46,7 +52,7 @@ public class StringUtils01 {
 	 * @param size 반복할길이
 	 * @param ch 반복할 문자
 	 * @return String 반복된 문자
-	 *@deprecated 왠만하면 쓰지 말도록 하는 것 
+	 *@deprecated 왠만하면 쓰지 말도록 하는 것 이런식으로 설정
 	 */
 
 	static String repeat(int size, char ch){

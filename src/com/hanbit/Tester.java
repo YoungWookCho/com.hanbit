@@ -14,6 +14,14 @@ public class Tester {
 		System.out.println(StringUtils01.leftPad("asdf",2,'0'));
 		System.out.println(StringUtils01.rightPad("11",4,'0'));
 		System.out.println(StringUtils01.rightPad("asdf",2,'0'));
+		System.out.println("substring: "+StringUtils02.substring("hello",1,4));
+		
+		System.out.println("substring2: "+StringUtils02.substring("hello",1));
+		
+		System.out.println("substringAfter: "+StringUtils02.substringAfter("hello", "e"));
+		System.out.println("substringBefore: "+StringUtils02.substringBefore("hello wolrd","wolrd"));
+		System.out.println("substringBetween: "+StringUtils02.substringBetween("chars[304]", "[", "}"));
+		System.out.println("substringBetween: "+StringUtils02.substringBetween("char ch= 'z';", "'"));
 		
 		
 	}
