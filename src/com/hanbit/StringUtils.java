@@ -58,19 +58,9 @@ public class StringUtils {
 		
 		
 		for (int i =0; i<strCharsLen; i++){
-			boolean match = false;
+			boolean match = StringUtils00.isMatch(strChars, rmStrChars, i);
+
 			
-			if (strChars[i]==rmStrChars[0]) {
-				for (int j=1; j<rmStrCharsLen; j++){
-					if (j+i<strCharsLen && strChars[j+i]==rmStrChars[j]){
-						match=true;						
-					}
-					else{
-						match=false;
-						break;
-					}
-				}
-			}
 			if (match){
 				i+=rmStrCharsLen-1;
 			}

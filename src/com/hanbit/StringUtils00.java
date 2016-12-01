@@ -3,14 +3,240 @@ package com.hanbit;
 public class StringUtils00 {
 
 	public static void main(String[] args) {
+		System.out.println("ABC".compareTo("aabc"));
+		System.out.println(compare("ABC", "aabc"));
+		System.out.println(compare("ABC", "aabc", false));
 		
-		System.out.println(compare("ab","ABC",true));
-		System.out.println(contains(null,null));
-		System.out.println(countMatches("banana","an"));
-
-
+		System.out.println(switchCase('!'));
+		
+		System.out.println(contains("banana", "an"));
+		
+		System.out.println(countMatches("banana", "a"));
+		
+		System.out.println(replace("banana", "an", "o"));
+		System.out.println(replace("banana", "an", "o", 1));
+		
+		System.out.println(equals(new String("abc"), "abc"));
 	}
 	
+	/*
+	 * 함수명: compare
+	 * 매개변수1: String left
+	 * 매개변수2: String right
+	 * 리턴타입: int
+	 * 설명: 두개의 문자열을 입력받아 왼쪽이 크면 양수,
+	 *       오른쪽이 크면 음수, 같으면 0을 반환합니다.
+	 * 예1: compare("11", "2") -> -1
+	 * 예2: compare("11111111111111", "2") -> -1
+	 * 예3: compare("abc", "abcd") -> -1
+	 * 예4: compare("ab", "ABC") -> -1
+	 * 예5: compare("abc", "ABC") -> ?
+	 */
+	static int compare(String left, String right, boolean ignoreCase) {
+		if (left == null && right == null) {
+			return 0;
+		}
+		else if (left != null && right == null) {
+			return 1;
+		}
+		else if (left == null && right != null) {
+			return -1;
+		}
+		
+		if (ignoreCase) {
+			left = toLowerCase(left);
+			right = toLowerCase(right);
+		}
+
+		char[] leftChars = left.toCharArray();
+		char[] rightChars = right.toCharArray();
+		
+		for (int i=0;i<leftChars.length;i++) {
+			if (i >= rightChars.length) {
+				return 1;
+			}
+			
+			if (leftChars[i] != rightChars[i]) {
+				return leftChars[i] - rightChars[i];
+			}
+		}
+		
+		return leftChars.length - rightChars.length;
+	}
+	
+	static int compare(String left, String right) {
+		
+		return compare(left, right, false);
+	}
+	
+	static int compareIgnoreCase(String left, String right) {
+		
+		return compare(left, right, true);
+	}
+	
+	/*
+	 * 함수명: switchCase
+	 * 매개변수: char ch
+	 * 리턴타입: char
+	 * 설명: 소문자를 입력받으면 대문자로, 대문자를 입력받으면 소문자로 반환합니다.
+	 * 		 단, 영문자가 아니면 그대로 반환합니다.
+	 * 예1: switchCase('a') -> 'A'
+	 * 예2: switchCase('D') -> 'd'
+	 * 예3: switchCase('!') -> '!'
+	 */
+	static char switchCase(char ch) {
+		int gabOfCase = 'a' - 'A';
+		
+		if (ch >= 'A' && ch <= 'Z') {
+			return (char) (ch + gabOfCase);
+		}
+		else if (ch >= 'a' && ch <= 'z') {
+			return (char) (ch - gabOfCase);
+		}
+		
+		return ch;
+	}
+	
+	/*
+	 * 함수명: toLowerCase
+	 * 매개변수: char ch
+	 * 리턴타입: char
+	 * 설명: 입력받은 영문 대문자를 소문자로 반환합니다.
+	 *       단, 영문 대문자가 아니면 그대로 반환합니다.
+	 * 예1: toLowerCase('A') -> 'a'
+	 * 예2: toLowerCase('a') -> 'a'
+	 */
+	static char toLowerCase(char ch) {
+		if (ch >= 'A' && ch <= 'Z') {
+			return (char) (ch + ('a' - 'A'));
+		}
+		
+		return ch;
+	}
+	
+	
+	/*
+	 * 함수명: toUpperCase
+	 * 매개변수: char ch
+	 * 리턴타입: char
+	 * 설명: 입력받은 영문 소문자를 대문자로 반환합니다.
+	 *       단, 영문 소문자가 아니면 그대로 반환합니다.
+	 * 예1: toUpperCase('a') -> 'A'
+	 * 예2: toUpperCase('A') -> 'A'
+	 */
+	static char toUpperCase(char ch) {
+		if (ch >= 'a' && ch <= 'z') {
+			return (char) (ch + ('A' - 'a'));
+		}
+		
+		return ch;
+	}
+	
+	/*
+	 * 함수명: toLowerCase
+	 * 매개변수: String str
+	 * 리턴타입: String
+	 * 설명: 입력받은 영문 대문자를 소문자로 반환합니다.
+	 *       단, 영문 대문자가 아니면 그대로 반환합니다.
+	 * 예1: toLowerCase("ABC") -> "abc"
+	 * 예2: toLowerCase("Java") -> "java"
+	 */
+	static String toLowerCase(String str) {
+		if (str == null) {
+			return null;
+		}
+		
+		char[] chars = str.toCharArray();
+		String result = "";
+		
+		for (int i=0;i<chars.length;i++) {
+			result += toLowerCase(chars[i]);
+		}
+		
+		return result;
+	}
+	
+	/*
+	 * 함수명: toUpperCase
+	 * 매개변수: String str
+	 * 리턴타입: String
+	 * 설명: 입력받은 영문 소문자를 대문자로 반환합니다.
+	 *       단, 영문 소문자가 아니면 그대로 반환합니다.
+	 * 예1: toUpperCase("hello") -> "HELLO"
+	 * 예2: toUpperCase("Java") -> "JAVA"
+	 * 예3: toUpperCase(null) -> null
+	 */
+	static String toUpperCase(String str) {
+		if (str == null) {
+			return null;
+		}
+		
+		char[] chars = str.toCharArray();
+		String result = "";
+		
+		for (int i=0;i<chars.length;i++) {
+			result += toUpperCase(chars[i]);
+		}
+		
+		return result;
+	}
+	
+	/*
+	 * 함수명: switchCase
+	 * 매개변수: String str
+	 * 리턴타입: String
+	 * 설명: 입력받은 영문 소문자를 대문자로, 대문자를 소문자로 반환합니다.
+	 *       단, 영문이 아니면 그대로 반환합니다.
+	 * 예1: switchCase("hello") -> "HELLO"
+	 * 예2: switchCase("Java") -> "jAVA"
+	 * 예3: switchCase(null) -> null
+	 */
+	static String switchCase(String str) {
+		if (str == null) {
+			return null;
+		}
+		
+		char[] chars = str.toCharArray();
+		String result = "";
+		
+		for (int i=0;i<chars.length;i++) {
+			result += switchCase(chars[i]);
+		}
+		
+		return result;
+	}
+	
+	/*
+	 * 함수명: contains
+	 * 매개변수1: String str
+	 * 매개변수2: String search
+	 * 리턴타입: boolean
+	 * 설명: 입력받은 문자열에 검색할 문자열이 있으면 true, 없으면 false를 반환합니다.
+	 * 예1: contains("banana", "an") -> true
+	 * 예2: contains("apple", "led") -> false
+	 * 예3: contains("apple", "pa") -> false
+	 * 예4: contains("hanbit", "NB") -> false
+	 * 예5: contains(null, null) -> false
+	 */
+	static boolean contains(String str, String search) {
+		if (str == null || search == null) {
+			return false;
+		}
+		
+		char[] chars = str.toCharArray();
+		char[] searchChars = search.toCharArray();
+		
+		for (int i=0;i<chars.length;i++) {
+			boolean match = isMatch(chars, searchChars, i);
+			
+			if (match) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
 	/*
 	 * 함수명: countMatches
 	 * 매개변수1: String str
@@ -23,303 +249,180 @@ public class StringUtils00 {
 	 * 예4: countMatches("hanbit", "NB") -> 0
 	 * 예5: countMatches(null, null) -> 0
 	 */
-	
-static int countMatches (String str, String search){
-
-		
-		if (search==null ||str==null || "".equals(search) || search.length()>str.length()) {
+	static int countMatches(String str, String search) {
+		if (str == null || search == null) {
 			return 0;
-			
 		}
 		
-		char[] strChars = str.toCharArray();
-		char[] rmStrChars = search.toCharArray();
+		int countMatches = 0;
 		
-		int strCharsLen= strChars.length;
-		int rmStrCharsLen= rmStrChars.length;
+		char[] chars = str.toCharArray();
+		char[] searchChars = search.toCharArray();
 		
-		
-		int iCount=0;
-		
-		for (int i =0; i<strCharsLen; i++){
-			boolean match = false;
-			if (strChars[i]==rmStrChars[0]) {
-				
-				for (int j=1; j<rmStrCharsLen; j++){
-					
-					if (j+i<strCharsLen && strChars[j+i]==rmStrChars[j]){
-						match=true;						
-					}
-					
-					else{
-						match=false;
-						break;
-					}
-				}
-			}
+		for (int i=0;i<chars.length;i++) {
+			boolean match = isMatch(chars, searchChars, i);
 			
-			if (match){
-				iCount++;
+			if (match) {
+				i += searchChars.length - 1;
+				countMatches++;
 			}
-
 		}
-		return iCount;
+		
+		return countMatches;
 	}
 	
-	
+	static boolean isMatch(char[] chars, char[] searchChars, int index) {
+		boolean match = true;
+		
+		if (chars[index] != searchChars[0]) {
+			match = false;
+		}
+		else if (chars.length - index < searchChars.length) {
+			match = false;
+		}
+		else {
+			for (int j=1;j<searchChars.length;j++) {
+				if (searchChars[j] != chars[index+j]) {
+					match = false;
+					break;
+				}
+			}
+		}
+		
+		return match;
+	}
 	
 	/*
-	 * 함수명: contains
+	 * 함수명: indexOf
 	 * 매개변수1: String str
 	 * 매개변수2: String search
-	 * 리턴타입: boolean
-	 * 설명: 입력받은 문자열에 검색할 문자열이 있으면 true, 없으면 false를 반환합니다.
-	 * 예1: contains("banana", "an") -> true
-	 * 예2: contains("apple", "led") -> false
-	 * 예3: contains(null, null) -> false
+	 * 리턴타입: int
+	 * 설명: 입력받은 문자열에 검색할 문자열이 있으면 시작되는 위치를,
+	 *       없으면 -1을 반환합니다.
+	 * 예1: indexOf("banana", "an") -> 1
+	 * 예2: indexOf("apple", "led") -> -1
+	 * 예3: indexOf("apple", "ple") -> 2
+	 * 예4: indexOf("hanbit", "NB") -> -1
+	 * 예5: indexOf(null, null) -> -1
 	 */
-	
-	static boolean contains (String str, String search){
-
-		
-		if (search==null ||str==null || "".equals(search) || search.length()>str.length()) {
-			return false;
-			
-		}
-
-		char[] strChars = str.toCharArray();
-		char[] rmStrChars = search.toCharArray();
-		
-		int strCharsLen= strChars.length;
-		int rmStrCharsLen= rmStrChars.length;
-		
-		
-		
-		for (int i =0; i<strCharsLen; i++){
-			boolean match = false;
-			if (strChars[i]==rmStrChars[0]) {
-				
-				for (int j=1; j<rmStrCharsLen; j++){
-					
-					if (j+i<strCharsLen && strChars[j+i]==rmStrChars[j]){
-						match=true;						
-					}
-					
-					else{
-						match=false;
-						break;
-					}
-				}
-			}
-			
-			if (match){
-				return true;
-			}
-
-		}
-		return false;
-	}
-	
-	
-	
-	static String toLowerCase(String str){
-		
-		if (str == null){
-			
-			return null;
+	static int indexOf(String str, String search) {
+		if (str == null || search == null) {
+			return -1;
 		}
 		
 		char[] chars = str.toCharArray();
-		String result="";
+		char[] searchChars = search.toCharArray();
 		
-		for (int i =0 ; i<chars.length; i++){
-			result+=toLowerCase(chars[i]);
-		}
-		
-		return result;
-		
-	}
-	
-	static String toUpperCase(String str){
-		
-		if (str == null){
+		for (int i=0;i<chars.length;i++) {
+			boolean match = isMatch(chars, searchChars, i);
 			
-			return null;
-		}
-		
-		char[] chars = str.toCharArray();
-		String result="";
-		
-		for (int i =0 ; i<chars.length; i++){
-			result+=toUpperCase(chars[i]);
-		}
-		
-		return result;
-	}
-	
-	
-	static String switchCase(String str){
-		
-		if (str == null){
-			
-			return null;
-		}
-		
-		char[] chars = str.toCharArray();
-		String result="";
-		
-		for (int i =0 ; i<chars.length; i++){
-			result+=switchCase(chars[i]);
-		}
-		
-		return result;
-	}
-		
-
-	
-	
-	static char toLowerCase(char ch){
-		
-		if ('A'<=ch && 'Z'>=ch){
-			return (char)(ch+32);
-		}	
-		return ch;
-		
-	}
-	
-	static char toUpperCase(char ch){
-		
-		if ('a'<=ch && 'z'>=ch){
-			
-			return (char)(ch-32);
-		}
-		return ch;
-
-		
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	static char switchCase(char ch){
-		
-		int result=0;
-			
-			if ('A'<=ch && 'Z'<=ch){
-				result= ch+32;
+			if (match) {
+				return i;
 			}
-			else if ('a'<=ch && 'z'<=ch){
-				result= ch-32;
-			}
-			else{
-				return ch;
-			}
+		}
 		
-		return (char)result;
+		return -1;
 	}
-	
-	
-	
 	
 	/*
-	 * 함수명: compare
-	 * 매개변수1: String left
-	 * 매개변수2: String right
-	 * 리턴타입: int
-	 * 설명: 두개의 문자열을 입력받아 왼쪽이 크면 양수,
-	 *       오른쪽이 크면 음수, 같으면 0을 반환합니다.
+	 * 함수명: replace
+	 * 매개변수1: String str
+	 * 매개변수2: String search
+	 * 매개변수3: String replaceStr
+	 * 매개변수4: int limit
+	 * 리턴타입: String
+	 * 설명: 입력받은 문자열에서 주어진 문자열을 찾아 대체 문자열로 교체하여 반환합니다.
+	 *       단, 교체 제한 수 만큼만 교체합니다. 제한이 -1 이면 제한을 두지 않습니다.
+	 * 예1: replace("banana", "an", "o", 1) -> "boana"
+	 * 예2: replace("apple", "le", "lication", 0) -> "apple"
+	 * 예3: replace("apple", "ple", "proach", 5) -> "approach"
+	 * 예4: replace("hanbit", "NB", "nba", -1) -> "hanbit"
+	 * 예5: replace(null, null, null, -1) -> null
 	 */
+	static String replace(String str, String search, String replaceStr, final int limit) {
+		if (str == null) {
+			return null;
+		}
+
+		if (search == null || "".equals(search) || str.length() < search.length()) {
+			return str;
+		}
+		
+		if (replaceStr == null) {
+			replaceStr = "";
+		}
+		
+		if (limit == 0) {
+			return str;
+		}
+		
+		int _limit = limit;
+		String result = "";
+		
+		char[] chars = str.toCharArray();
+		char[] searchChars = search.toCharArray();
+		
+		for (int i=0;i<chars.length;i++) {
+			boolean match = true;
+			
+			if (_limit < 0 || _limit > 0) {
+				match = isMatch(chars, searchChars, i);
+			}
+			else {
+				match = false;
+			}
+			
+			if (match) {
+				i += searchChars.length - 1;
+				result += replaceStr;
+				_limit--;
+			}
+			else {
+				result += chars[i];
+			}
+		}
+		
+		return result;
+	}
 	
-	static int compare(String left, String right, boolean ignoreCase){
+	static String replace(String str, String search, String replaceStr) {
 		
-		if (left != null && right == null){
-			return 1;
-		}
-		else if (left == null && right != null){
-			return -1;
-		}
-		else if (left == null && right == null){
-			
-			return 0;			
-		}
-				
-		char [] leftChars= left.toCharArray();
-		char [] rightChars= right.toCharArray();
-
+		return replace(str, search, replaceStr, -1);
+	}
+	
+	/*
+	 * 함수명: equals
+	 * 매개변수1: String str1
+	 * 매개변수2: String str2
+	 * 리턴타입: boolean
+	 * 설명: 두개의 문자열이 같으면 true, 다르면 false를 반환합니다.
+	 */
+	static boolean equals(String str1, String str2) {
 		
-		if(ignoreCase){
-			// 메소드를 이용한 함수
-			left = toLowerCase(left);
-			right = toUpperCase(right);
-		}
-
-		
-		/*	 대소문자 풀어서 쓴것 위에 메소드 함수를 이용하면 됨.
-		 * 
-		for (int j =0; j<leftChars.length;j++){
-				
-			if ('A'<=leftChars[j] && 'Z'>=leftChars[j]){
-				leftChars[j]=(char)(leftChars[j]+32);
-			}				
+		if (str1 == null && str2 == null) {
+			return true;
 		}
 		
-		
-		
-		for (int j =0; j<rightChars.length;j++){
-			
-			if ('A'<=rightChars[j] && 'Z'>=rightChars[j]){
-				rightChars[j]=(char)(rightChars[j]+32);
-			}				
+		if (str1 == null || str2 == null) {
+			return false;
 		}
-
-		*/
 		
-		for (int i = 0; i<leftChars.length; i++){
-			
-
-			// 레프트와 라이트를 비교 후 같았을때 왼쪽의 길이가 더 길면
-
-			if (i >= rightChars.length){
-				return 1;
+		if (str1.length() != str2.length()) {
+			return false;
+		}
+		
+		char[] chars1 = str1.toCharArray();
+		char[] chars2 = str2.toCharArray();
+		
+		for (int i=0;i<chars1.length;i++) {
+			if (chars1[i] != chars2[i]) {
+				return false;
 			}
-			/*
-			// 왼쪽 이 클때
-			if ( leftChars[i]>rightChars[i]){
-				return 1;
-			}
-			//오른쪽이클때
-			else if ( leftChars[i]<rightChars[i]){
-				return -1;
-			}
-			*/
-			if ( leftChars[i]!=rightChars[i]){
-				return leftChars[i]-rightChars[i];
-			}
-		
 		}
-		// 포문 통과 같다 레프트를 다 조사했을때
-		/*
-		// 그래서 오른쪽의 길이가 더 크면 오른쪽이 큼
-		if(leftChars.length < rightChars.length){
-			return -1;
-		}
-		// 위의 것도 아니라면 같은것 
-		return 0;
-		 */
-		//뭔가 하나더 필요함
-		//return leftChars[i]-rightChars[i];
 		
-		return leftChars.length - rightChars.length;
-		
+		return true;
 	}
 	
 	
 	
-	
-
 }
