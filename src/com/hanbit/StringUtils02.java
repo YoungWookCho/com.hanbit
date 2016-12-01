@@ -46,7 +46,18 @@ public class StringUtils02 {
 		
 	}
 	
-	// 같은것 선언 실수 
+	/**
+	 * 주어진 문자열에서 시작인덱스부터의 문자열을 반환합니다.
+	 * 
+	 * 예1: substring("hello", 1) -> "ello"
+	 * 예2: substring("hello", 3) -> "lo"
+	 * 예3: substring("hello", 5) -> ""
+	 * 예4: substring("hello", -1) -> null
+	 * 
+	 * @param str
+	 * @param beginIndex
+	 * @return
+	 */
 	
 	static String substring (String str, int beginIndex){
 		
@@ -126,7 +137,17 @@ public class StringUtils02 {
 	}
 	
 	
-	
+	/**
+	 * 입력받은 문자열에서 구분자로 받은 문자열로 둘러싸인 문자열을 반환합니다.
+	 * 
+	 * 예1: substringBetween("#hello#", "#") -> "hello"
+	 * 예2: substringBetween("char ch = 'z';", "'") -> "z"
+	 * 예3: substringBetween("char ch = 'z';", null) -> null
+	 * 
+	 * @param str
+	 * @param tag
+	 * @
+	 **/
 	
 	static String substringBetween (String str, String tag){
 		
