@@ -15,6 +15,7 @@ public class Tester {
 		System.out.println(StringUtils01.rightPad("11",4,'0'));
 		System.out.println(StringUtils01.rightPad("asdf",2,'0'));
 		
+		
 	}
 
 }

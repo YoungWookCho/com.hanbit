@@ -1,7 +1,9 @@
 package com.hanbit;
 
 
+
 public class StringUtils01 {
+
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -24,6 +26,7 @@ public class StringUtils01 {
 	
 	
 	
+
 	static String leftPad(String str, int size, char ch){
 		int stringLen = 0;
 		if(str==null || str.length()>=size){
@@ -35,7 +38,17 @@ public class StringUtils01 {
 		return repeat(stringLen,ch)+str;
 		
 	}
-	
+
+
+ 
+	/**
+	 * 길이와 문자를 입력 받아 길이만큼 문자를 반복한 문자영을 반환합니다.
+	 * @param size 반복할길이
+	 * @param ch 반복할 문자
+	 * @return String 반복된 문자
+	 *@deprecated 왠만하면 쓰지 말도록 하는 것 
+	 */
+
 	static String repeat(int size, char ch){
 		
 		String result="";
@@ -47,6 +60,8 @@ public class StringUtils01 {
 	}
 	
 	
+
+
 
 	
 	
