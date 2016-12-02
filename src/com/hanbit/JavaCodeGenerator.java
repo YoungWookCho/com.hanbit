@@ -56,7 +56,8 @@ public class JavaCodeGenerator {
 				+ "{\n\t\tSystem.out.println(\"" + string + ");\n\t}";
 
 		for (int i = 0; i < fuctionName.length; i++) {
-			result += "\n\n\tstatic void " + fuctionName[i] + "() {\n\n\t}";
+			result += "\n\n\tstatic void ";
+			result+= fuctionName[i] + "() {\n\n\t}";
 			
 		}
 		result += "\n}";
