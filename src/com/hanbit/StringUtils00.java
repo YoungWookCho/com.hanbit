@@ -271,6 +271,8 @@ public class StringUtils00 {
 		return countMatches;
 	}
 	
+	
+	
 	static boolean isMatch(char[] chars, char[] searchChars, int index) {
 		boolean match = true;
 		

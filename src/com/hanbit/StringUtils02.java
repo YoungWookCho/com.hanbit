@@ -94,7 +94,18 @@ public class StringUtils02 {
 		return substring(str,pos+separator.length());
 		
 	}
-	
+	/**
+	 * 입력받은 문자열에서 구분자로 받은 문자열 앞의 문자열을 반환합니다.
+	 * 
+	 * 예1: substringBefore("hello world", "world") -> "hello "
+	 * 예2: substringBefore("banana", "na") -> "ba"
+	 * 예3: substringBefore("banana", "B") -> ""
+	 * 예4: substringBefore("banana", null) -> ""
+	 * 
+	 * @param str
+	 * @param separator 구분자
+	 * @return
+	 */
 	
 	static String substringBefore(String str, String separator) {
 		

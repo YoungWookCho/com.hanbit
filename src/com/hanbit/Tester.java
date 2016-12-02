@@ -24,6 +24,26 @@ public class Tester {
 		System.out.println("substringBetween: "+StringUtils02.substringBetween("char ch= 'z';", "'"));
 		
 		
+		printArray(StringUtils03.split("이상윤|조영욱|||",'|'));
+		printArray(StringUtils03.splitNotEmpty("이상윤|조영욱|||",'|'));
+		
+		printArray(StringUtils03.splitNotBlank("이상윤|조영욱|  | |", '|'));
+		
+		
+		System.out.println("------------");
+		printArray(StringUtils03.split("이상윤||조영욱|||", "||"));
+		printArray(StringUtils03.splitNotBlankAndTrim("이상윤   ||   조영욱   ||  ||  |", "||"));
+		
+		
+		
+		
+	}
+	static void printArray(String[] array){
+		
+		for (int i = 0; i < array.length; i++) {
+			System.out.println(array[i]);
+		}
+		
 	}
 
 }
