@@ -4,20 +4,54 @@ package com.hanbit;
 
 public class StringUtils03 {
 	
-	
+	/**
+	 * 입력받은 문자열을 구분자를 기준으로 분리한 문자열의
+	 * 배열 중 빈문자열을 제외하고, 빈문자열이 아닌 문자열의
+	 * 앞뒤 공백도 제거한 문자열의 배열을 반환합니다.
+	 * 
+	 * 예1: splitNotBlank("hello, world", ",") -> ["hello", "world"]
+	 * 예2: splitNotBlank("5,4,3,2,1", ",") -> ["5", "4", "3", "2", "1"]
+	 * 예3: splitNotBlank("이상윤|조영욱|| ||", "||") -> ["이상윤|조영욱"]
+	 * 
+	 * @param str
+	 * @param separator
+	 * @return
+	 */
 	
 	static String[] splitNotBlankAndTrim(String str, String separator)
 	{
 		
+		String[] split=split(str,separator);
+		
+		int iCount =0;
+		for (int i =0; i<split.length; i++){
+			if (!StringUtils.isBlank(split[i]) ){
+				iCount++;
+			}
+			
+		}
+		String[] result=new String [iCount];
+		iCount=0;
+		for (int i =0; i<split.length; i++){
+			if (StringUtils.isBlank(split[i])){
+				continue;
+			}
+			result[iCount++]=StringUtils01.trimFast(split[i]);	
+		}
+		return result;
+	}
+	
+		/* 함수 이용이지만 포문이 두번돌아야 하기 때문에 비효과적임 위에 방법이 더욱 효과적
+		
 		String[] result=splitNotBlank(str,separator);
 		
 		for (int i =0 ; i<result.length; i++){
-			result[i]=StringUtils01.trimFast(result[i]);
+			result[i]=v(result[i]);
 			
 		}
 		return result;
+		 */
 
-	}
 	
 	
 	
